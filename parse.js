@@ -24,6 +24,8 @@ fs.readFile('countries.csv', 'utf8', function (err, data) {
 			}
 		});
 
+		//onsole.log(nested_data)
+
 		//loop through keys (years) and set new year if non-existent
 		Object.keys(nested_data).forEach(function (country) {
 						
@@ -35,6 +37,7 @@ fs.readFile('countries.csv', 'utf8', function (err, data) {
 				}				
 			}
 		});
+		//console.log(nested_data)
 
 		var new_data = [];
 
@@ -53,18 +56,6 @@ fs.readFile('countries.csv', 'utf8', function (err, data) {
 				values: reformatted_values
 			})
 		});
-		//console.log(new_data)
-
-		
-		// var keys = 'year,' + 'emissions,' + 'country' + '\n';
-
-		// fs.writeFileSync('new_data.csv', keys, 'utf8');
-
-		// new_rows.forEach(function (row) {
-		// 	var new_line = row.year + ',' + row.emissions + ',' + row.country + '\n';
-		// 	fs.appendFileSync('new_data.csv', new_line, 'utf8');
-
-		// });
 
 		fs.writeFileSync('new_data.json', JSON.stringify(new_data), 'utf8')	
     })

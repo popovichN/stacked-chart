@@ -18,8 +18,6 @@ body {
 <script src="//d3js.org/d3.v3.min.js"></script>
 <script>
 
-//ar format = d3.time.format("%m/%d/%y");
-
 (function () {
 var margin = {top: 20, right: 30, bottom: 30, left: 40},
     width = 960 - margin.left - margin.right,
@@ -49,8 +47,6 @@ var stack = d3.layout.stack()
     .x(function(d) { return d.year; })
     .y(function(d) { return d.emissions; });
 
-// var nest = d3.nest()
-//     .key(function(d) { return d.Nation; });
 
 var area = d3.svg.area()
     .interpolate("cardinal")
@@ -65,20 +61,11 @@ var svg = d3.select("body").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.json("new_data.json", function(error, data) {
+d3.json("reformatted_data.json", function(error, data) {
   if (error) throw error;
 
-  // data.forEach(function(d) {
-  //   d.year = +d.Year;
-  //   d.value = +d.Total_emissions;
-  //   //    console.log(d.Nation, d.value, d.year)
-  // });
-
   var layers = stack(data);
-  console.log(layers);
-  // x.domain([1850, 2014]);
-  // x.domain(d3.extent(data, function(d) { console.log(d); return d.year; }));
-  // y.domain([0, d3.max(data, function(d) { return d.y0 + d.y; })]);
+
   x.domain([ 1850, 2014 ]);
   y.domain([0, 10000000 ]);
 
