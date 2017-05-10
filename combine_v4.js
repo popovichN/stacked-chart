@@ -5,17 +5,19 @@ fs.readFile('new_data_v4_keys.json', 'utf8', function (err, data) {
 
 var data = JSON.parse(data);
 
-var all_excluded_countries = ['CANADA', 'MEXICO', 'INDIA','JAPAN','CHINA (MAINLAND)','UNITED STATES OF AMERICA','UNITED KINGDOM','FRANCE (INCLUDING MONACO)', 'GERMANY', 'FEDERAL REPUBLIC OF GERMANY', 'POLAND', 'ITALY (INCLUDING SAN MARINO)', 'SPAIN', 'BELGIUM', 'CZECHOSLOVAKIA', 'NETHERLANDS', 'ROMANIA', 'AUSTRIA', 'HUNGARY', 'SWEDEN', 'DENMARK', 'BULGARIA', 'GREECE', 'CZECH REPUBLIC', 'FINLAND', 'PORTUGAL', 'IRELAND', 'SLOVAKIA', 'LUXEMBOURG', 'CROATIA', 'ESTONIA', 'SLOVENIA', 'LITHUANIA', 'CYPRUS', 'LATVIA', 'MALTA', 'FORMER GERMAN DEMOCRATIC REPUBLIC'];
+var all_excluded_countries = ['RUSSIAN FEDERATION', 'USSR', 'ICELAND', 'NORWAY', 'SWITZERLAND', 'AUSTRALIA', 'NEW ZEALAND','CANADA', 'INDIA','JAPAN','CHINA (MAINLAND)','UNITED STATES OF AMERICA','UNITED KINGDOM','FRANCE (INCLUDING MONACO)', 'GERMANY', 'FEDERAL REPUBLIC OF GERMANY', 'POLAND', 'ITALY (INCLUDING SAN MARINO)', 'SPAIN', 'BELGIUM', 'CZECHOSLOVAKIA', 'NETHERLANDS', 'ROMANIA', 'AUSTRIA', 'HUNGARY', 'SWEDEN', 'DENMARK', 'BULGARIA', 'GREECE', 'CZECH REPUBLIC', 'FINLAND', 'PORTUGAL', 'IRELAND', 'SLOVAKIA', 'LUXEMBOURG', 'CROATIA', 'ESTONIA', 'SLOVENIA', 'LITHUANIA', 'CYPRUS', 'LATVIA', 'MALTA', 'FORMER GERMAN DEMOCRATIC REPUBLIC'];
 
 var groups = {
-	'United States': ['UNITED STATES OF AMERICA'],
-	'United Kingdom': [ 'UNITED KINGDOM' ],
-	'European Union': ['FRANCE (INCLUDING MONACO)', 'GERMANY', 'FEDERAL REPUBLIC OF GERMANY', 'POLAND', 'ITALY (INCLUDING SAN MARINO)', 'SPAIN', 'BELGIUM', 'CZECHOSLOVAKIA', 'NETHERLANDS', 'ROMANIA', 'AUSTRIA', 'HUNGARY', 'SWEDEN', 'DENMARK', 'BULGARIA', 'GREECE', 'CZECH REPUBLIC', 'FINLAND', 'PORTUGAL', 'IRELAND', 'SLOVAKIA', 'LUXEMBOURG', 'CROATIA', 'ESTONIA', 'SLOVENIA', 'LITHUANIA', 'CYPRUS', 'LATVIA', 'MALTA', 'FORMER GERMAN DEMOCRATIC REPUBLIC'],
-	'Canada and Mexico': ['CANADA', 'MEXICO'],
-	'Japan': ['JAPAN'],
-	'China': ['CHINA (MAINLAND)'],
-	'India': ['INDIA']
+	'United States dev': ['UNITED STATES OF AMERICA'],
+	'United Kingdom dev': [ 'UNITED KINGDOM' ],
+	'European Union dev': ['FRANCE (INCLUDING MONACO)', 'GERMANY', 'FEDERAL REPUBLIC OF GERMANY', 'POLAND', 'ITALY (INCLUDING SAN MARINO)', 'SPAIN', 'BELGIUM', 'CZECHOSLOVAKIA', 'NETHERLANDS', 'ROMANIA', 'AUSTRIA', 'HUNGARY', 'SWEDEN', 'DENMARK', 'BULGARIA', 'GREECE', 'CZECH REPUBLIC', 'FINLAND', 'PORTUGAL', 'IRELAND', 'SLOVAKIA', 'LUXEMBOURG', 'CROATIA', 'ESTONIA', 'SLOVENIA', 'LITHUANIA', 'CYPRUS', 'LATVIA', 'MALTA', 'FORMER GERMAN DEMOCRATIC REPUBLIC'],
+	'Other developed dev': ['CANADA', 'ICELAND', 'NORWAY', 'SWITZERLAND', 'AUSTRALIA', 'NEW ZEALAND', 'JAPAN'],
+	'Russia and USSR other': [ 'RUSSIAN FEDERATION', 'USSR'],
+	'China other': ['CHINA (MAINLAND)'],
+	'India other': ['INDIA']
 };
+
+console.log(all_excluded_countries.length)
 
 //var rest_of_countries = [];
 
@@ -41,17 +43,15 @@ Object.keys(data).forEach(function (year) {
 	});
 
 	//rest of world
-	reformatted_data[year]['Rest of world'] = 0;
+	reformatted_data[year]['Rest of world other'] = 0;
 
 	Object.keys(data[year]).forEach(function (key_country) {
 		if (all_excluded_countries.indexOf(key_country) < 0) {
-			console.log(reformatted_data[year]['Rest of world'], data[year][key_country])
-			reformatted_data[year]['Rest of world'] = reformatted_data[year]['Rest of world'] + data[year][key_country];
+			reformatted_data[year]['Rest of world other'] = reformatted_data[year]['Rest of world other'] + data[year][key_country];
 		}
 	})
 
 });
-console.log(reformatted_data)
 
 var new_data = [];
 
