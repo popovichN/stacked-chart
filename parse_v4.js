@@ -30,17 +30,16 @@ fs.readFile('countries.csv', 'utf8', function (err, data) {
 		});
 
 		//reformat for v4 stack
-		var new_data = [];
+		//var new_data = [];
 
-		Object.keys(reformatted_data).forEach(function (year) {
-			reformatted_data[year]['year'] = year;
+		// Object.keys(reformatted_data).forEach(function (year) {
+		// 	reformatted_data[year]['year'] = year;
 
-			new_data.push(reformatted_data[year])
-		})
-		console.log(new_data)
+		// 	new_data.push(reformatted_data[year])
+		// })
 		
-
-		fs.writeFileSync('new_data_v4.json', JSON.stringify(new_data), 'utf8')	
+		fs.writeFileSync('new_data_v4_keys.json', JSON.stringify(reformatted_data), 'utf8')
+		//fs.writeFileSync('new_data_v4.json', JSON.stringify(new_data), 'utf8')	
     })
 
 })
