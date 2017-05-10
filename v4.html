@@ -91,10 +91,11 @@ d3.csv('data_v4.csv', function(error, data) {
   x.domain(d3.extent(data, function(d) { return d.date; }));
   y.domain([0, maxDateVal])
 
-  // stack.keys(keys);
+  stack.keys(keys);
 
-  // stack.order(d3.stackOrderNone);
-  // stack.offset(d3.stackOffsetNone);
+  stack.order(d3.stackOrderNone);
+  stack.offset(d3.stackOffsetNone);
+  console.log(stack(data))
 
 
   var browser = svg.selectAll('.browser')
@@ -102,8 +103,6 @@ d3.csv('data_v4.csv', function(error, data) {
     .enter().append('g')
       .attr('class', function(d){ return 'browser ' + d.key; })
       .attr('fill-opacity', 0.5);
-
-      console.log(data, 'data')
 
   browser.append('path')
       .attr('class', 'area')
@@ -131,8 +130,7 @@ d3.csv('data_v4.csv', function(error, data) {
   svg.append ("text")
     .attr("x", 0-margin.left)
     .text("Billions of liters")
-
-      
+    
 });
 
 
