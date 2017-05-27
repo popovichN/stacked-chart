@@ -37,8 +37,10 @@ fs.readFile('countries.csv', 'utf8', function (err, data) {
 
 		// 	new_data.push(reformatted_data[year])
 		// })
+
+		console.log(reformatted_data)
 		
-		fs.writeFileSync('new_data_v4_keys.json', JSON.stringify(reformatted_data), 'utf8')
+		//fs.writeFileSync('new_data_v4_keys.json', JSON.stringify(reformatted_data), 'utf8')
 		//fs.writeFileSync('new_data_v4.json', JSON.stringify(new_data), 'utf8')	
     })
 

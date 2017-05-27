@@ -9,16 +9,15 @@ var all_excluded_countries = ['RUSSIAN FEDERATION', 'USSR', 'ICELAND', 'NORWAY',
 
 var groups = {
 	'United States dev': ['UNITED STATES OF AMERICA'],
-	'United Kingdom dev': [ 'UNITED KINGDOM' ],
-	'European Union dev': ['FRANCE (INCLUDING MONACO)', 'GERMANY', 'FEDERAL REPUBLIC OF GERMANY', 'POLAND', 'ITALY (INCLUDING SAN MARINO)', 'SPAIN', 'BELGIUM', 'CZECHOSLOVAKIA', 'NETHERLANDS', 'ROMANIA', 'AUSTRIA', 'HUNGARY', 'SWEDEN', 'DENMARK', 'BULGARIA', 'GREECE', 'CZECH REPUBLIC', 'FINLAND', 'PORTUGAL', 'IRELAND', 'SLOVAKIA', 'LUXEMBOURG', 'CROATIA', 'ESTONIA', 'SLOVENIA', 'LITHUANIA', 'CYPRUS', 'LATVIA', 'MALTA', 'FORMER GERMAN DEMOCRATIC REPUBLIC'],
+	'European Union dev': [ 'UNITED KINGDOM', 'FRANCE (INCLUDING MONACO)', 'GERMANY', 'FEDERAL REPUBLIC OF GERMANY', 'POLAND', 'ITALY (INCLUDING SAN MARINO)', 'SPAIN', 'BELGIUM', 'CZECHOSLOVAKIA', 'NETHERLANDS', 'ROMANIA', 'AUSTRIA', 'HUNGARY', 'SWEDEN', 'DENMARK', 'BULGARIA', 'GREECE', 'CZECH REPUBLIC', 'FINLAND', 'PORTUGAL', 'IRELAND', 'SLOVAKIA', 'LUXEMBOURG', 'CROATIA', 'ESTONIA', 'SLOVENIA', 'LITHUANIA', 'CYPRUS', 'LATVIA', 'MALTA', 'FORMER GERMAN DEMOCRATIC REPUBLIC'],
 	'Other developed dev': ['CANADA', 'ICELAND', 'NORWAY', 'SWITZERLAND', 'AUSTRALIA', 'NEW ZEALAND', 'JAPAN'],
 	'Russia and USSR other': [ 'RUSSIAN FEDERATION', 'USSR'],
 	'China other': ['CHINA (MAINLAND)'],
 	'India other': ['INDIA']
 };
 
-console.log(all_excluded_countries.length)
-
+// console.log(all_excluded_countries.length)
+// console.log(groups['European Union dev'].length)
 //var rest_of_countries = [];
 
 var reformatted_data = {};
@@ -61,6 +60,6 @@ Object.keys(reformatted_data).forEach(function (year) {
 	new_data.push(reformatted_data[year])
 })
 
-fs.writeFileSync('reformatted_data_v4.json', JSON.stringify(new_data), 'utf8')	
+//fs.writeFileSync('reformatted_data_v4.json', JSON.stringify(new_data), 'utf8')	
 
 })

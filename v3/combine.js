@@ -5,24 +5,20 @@ fs.readFile('new_data.json', 'utf8', function (err, data) {
 
 var data = JSON.parse(data);
 
-var all_excluded_countries = ['CANADA', 'MEXICO', 'INDIA','JAPAN','CHINA (MAINLAND)','UNITED STATES OF AMERICA','UNITED KINGDOM','FRANCE (INCLUDING MONACO)', 'GERMANY', 'FEDERAL REPUBLIC OF GERMANY', 'POLAND', 'ITALY (INCLUDING SAN MARINO)', 'SPAIN', 'BELGIUM', 'CZECHOSLOVAKIA', 'NETHERLANDS', 'ROMANIA', 'AUSTRIA', 'HUNGARY', 'SWEDEN', 'DENMARK', 'BULGARIA', 'GREECE', 'CZECH REPUBLIC', 'FINLAND', 'PORTUGAL', 'IRELAND', 'SLOVAKIA', 'LUXEMBOURG', 'CROATIA', 'ESTONIA', 'SLOVENIA', 'LITHUANIA', 'CYPRUS', 'LATVIA', 'MALTA', 'FORMER GERMAN DEMOCRATIC REPUBLIC'];
+var all_excluded_countries = ['ICELAND', 'NORWAY', 'SWITZERLAND', 'AUSTRALIA', 'NEW ZEALAND','CANADA', 'INDIA','JAPAN','CHINA (MAINLAND)','UNITED STATES OF AMERICA','UNITED KINGDOM','FRANCE (INCLUDING MONACO)', 'GERMANY', 'FEDERAL REPUBLIC OF GERMANY', 'POLAND', 'ITALY (INCLUDING SAN MARINO)', 'SPAIN', 'BELGIUM', 'CZECHOSLOVAKIA', 'NETHERLANDS', 'ROMANIA', 'AUSTRIA', 'HUNGARY', 'SWEDEN', 'DENMARK', 'BULGARIA', 'GREECE', 'CZECH REPUBLIC', 'FINLAND', 'PORTUGAL', 'IRELAND', 'SLOVAKIA', 'LUXEMBOURG', 'CROATIA', 'ESTONIA', 'SLOVENIA', 'LITHUANIA', 'CYPRUS', 'LATVIA', 'MALTA', 'FORMER GERMAN DEMOCRATIC REPUBLIC'];
 
 var groups = {
-	'European Union': ['FRANCE (INCLUDING MONACO)', 'GERMANY', 'FEDERAL REPUBLIC OF GERMANY', 'POLAND', 'ITALY (INCLUDING SAN MARINO)', 'SPAIN', 'BELGIUM', 'CZECHOSLOVAKIA', 'NETHERLANDS', 'ROMANIA', 'AUSTRIA', 'HUNGARY', 'SWEDEN', 'DENMARK', 'BULGARIA', 'GREECE', 'CZECH REPUBLIC', 'FINLAND', 'PORTUGAL', 'IRELAND', 'SLOVAKIA', 'LUXEMBOURG', 'CROATIA', 'ESTONIA', 'SLOVENIA', 'LITHUANIA', 'CYPRUS', 'LATVIA', 'MALTA', 'FORMER GERMAN DEMOCRATIC REPUBLIC'],
-	'United Kingdom': [ 'UNITED KINGDOM' ],
 	'United States': ['UNITED STATES OF AMERICA'],
+	'European Union and UK': ['UNITED KINGDOM', 'FRANCE (INCLUDING MONACO)', 'GERMANY', 'FEDERAL REPUBLIC OF GERMANY', 'POLAND', 'ITALY (INCLUDING SAN MARINO)', 'SPAIN', 'BELGIUM', 'CZECHOSLOVAKIA', 'NETHERLANDS', 'ROMANIA', 'AUSTRIA', 'HUNGARY', 'SWEDEN', 'DENMARK', 'BULGARIA', 'GREECE', 'CZECH REPUBLIC', 'FINLAND', 'PORTUGAL', 'IRELAND', 'SLOVAKIA', 'LUXEMBOURG', 'CROATIA', 'ESTONIA', 'SLOVENIA', 'LITHUANIA', 'CYPRUS', 'LATVIA', 'MALTA', 'FORMER GERMAN DEMOCRATIC REPUBLIC'],
+	'Other developed': ['CANADA', 'ICELAND', 'NORWAY', 'SWITZERLAND', 'AUSTRALIA', 'NEW ZEALAND', 'JAPAN'],
 	'China': ['CHINA (MAINLAND)'],
-	'Japan': ['JAPAN'],
-	'India': ['INDIA'],
-	'Canada and Mexico': ['CANADA', 'MEXICO']
+	'India': ['INDIA']
 };
 
 var new_data = {
 	'United States': {},
-	'Canada and Mexico' : {},
-	'European Union' : {},
-	'United Kingdom' : {},
-	'Japan' : {},
+	'European Union and UK' : {},
+	'Other developed' : {},
 	'China' : {},
 	'India' : {},
 	'Rest of world': {}
@@ -66,8 +62,6 @@ data.forEach(function (country) {
 
 });
 
-console.log(new_data)
-
 var reformatted_data = [];
 
 Object.keys(new_data).forEach(function (group) {
@@ -85,6 +79,7 @@ Object.keys(new_data).forEach(function (group) {
 		values: reformatted_values
 	})
 });
+console.log(rest_of_countries.length, ' other countries')
 
-fs.writeFileSync('reformatted_data.json', JSON.stringify(reformatted_data), 'utf8')	
+// fs.writeFileSync('reformatted_data.json', JSON.stringify(reformatted_data), 'utf8')	
 })
